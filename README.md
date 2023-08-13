@@ -1,4 +1,4 @@
-# Product Categorization using BERT-based Text Classification
+# Automated product categorization for e-commerce with AI
 
 Welcome to the Product Categorization Project, where we've harnessed the power of advanced natural language processing techniques to develop a multi-label classification model. This model is based on Logistic Regression, coupled with TF-IDF vectorization, and has undergone rigorous training and refinement.
 
