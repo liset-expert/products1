@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Automated Product Categorization for E-commerce</title>
+    <style>
+      /* Styles for the page layout and elements */
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        width: 90%;
+        max-width: 600px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #3498db;
+      }
+      label {
+        font-weight: bold;
+      }
+      input[type="text"],
+      textarea {
+        font-family: Arial, sans-serif;
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      textarea {
+        font-size: 14px;
+        height: 150px;
+      }
+      button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #2980b9;
+      }
+      /* Styles for the result section */
+      #result {
+        display: none;
+        margin-top: 20px;
+        text-align: left;
+      }
+      #result h2 {
+        color: #3498db;
+        margin-bottom: 10px;
+      }
+      #result ul {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        list-style-type: disc;
+        margin-left: 20px;
+        padding-left: 10px;
+      }
+      #reset-button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Heading and form for input -->
+      <h1>Automated Product Categorization for E-commerce</h1>
+      <form id="prediction-form">
+        <!-- Input fields for product name and description -->
+        <label for="product-name">Product Name:</label>
+        <input type="text" id="product-name" placeholder="Enter product name" />
+
+        <label for="description">Description:</label>
+        <textarea
+          id="description"
+          placeholder="Enter product description"
+        ></textarea>
+
+        <button type="submit">Predict</button>
+      </form>
+
+      <!-- Display predicted categories -->
+      <div id="result">
+        <h2>Predicted Categories</h2>
+        <ul id="result-list"></ul>
+        <button id="reset-button">Clear Fields</button>
+      </div>
+    </div>
+
+    <!-- JavaScript for form submission and result display -->
+    <script>
+      // Get references to form elements
+      const predictionForm = document.getElementById("prediction-form");
+      const productNameInput = document.getElementById("product-name");
+      const descriptionInput = document.getElementById("description");
+      const resultList = document.getElementById("result-list");
+      const resultSection = document.getElementById("result");
+      const resetButton = document.getElementById("reset-button");
+
+      // Handle form submission
+      predictionForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const productName = productNameInput.value;
+        const description = descriptionInput.value;
+        const combinedText = productName + " " + description;
+
+        // Send the combined text to the prediction endpoint
+        fetch("/predict", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            description: combinedText,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const formattedCategories = data.categories.map((category) =>
+              category.replace(/['()]/g, "").trim()
+            );
+
+            // Clear the previous results
+            resultList.innerHTML = "";
+
+            // Display the predicted categories in a list
+            formattedCategories.forEach((category) => {
+              const li = document.createElement("li");
+              li.textContent = category;
+              resultList.appendChild(li);
+            });
+
+            // Display the result section and reset button
+            resultSection.style.display = "block";
+            resetButton.style.display = "block";
+          });
+      });
+
+      // Handle reset button click
+      resetButton.addEventListener("click", function () {
+        // Clear input fields and result list
+        productNameInput.value = "";
+        descriptionInput.value = "";
+        resultList.innerHTML = "";
+
+        // Hide the result section and reset button
+        resultSection.style.display = "none";
+        resetButton.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
