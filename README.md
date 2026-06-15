@@ -1,10 +1,10 @@
 # Automated product categorization for e-commerce with AI
 
-Welcome to the Product Categorization Project, where we've harnessed the power of advanced natural language processing techniques to develop a multi-label classification model. This model is based on Logistic Regression, coupled with TF-IDF vectorization, and has undergone rigorous training and refinement.
+Welcome to the Product Categorization Project, where we've harnessed advanced natural language processing techniques to develop a multi-label classification model. This model is based on Logistic Regression, coupled with TF-IDF vectorization, and has undergone rigorous training and refinement.
 
 In this project, we've meticulously fine-tuned our model through an intensive grid search for optimal hyperparameters. The result is a model that not only predicts labels for the test set but also goes the extra mile by calculating metrics like Average Precision and F1 Score for each category. This precision-focused approach ensures that our predictions are not only accurate but also comprehensive.
 
-By training a multi-label classification model using Logistic Regression with TF-IDF vectorization, we've created a powerful tool for categorizing products effectively. With this system in place, you can confidently categorize products with a high degree of accuracy, backed by thorough evaluation and fine-tuning.
+By training a multi-label classification model using Logistic Regression with TF-IDF vectorization, we've created a powerful tool for effectively categorizing products. With this system in place, you can confidently categorize products with high accuracy, backed by thorough evaluation and fine-tuning.
 
 ## Table of Contents
 
@@ -129,7 +129,7 @@ This document provides a step-by-step guide on how to use the application and ho
 
 1. Open the `EDA_End_Proy.ipynb` file in a Jupyter Notebook environment.
 2. Follow the detailed steps in the notebook to complete the process of data loading, analysis, text processing, and model training.
-3. Within the notebook, three examples of trainings are provided with functioning tests for each of them. This will allow you to understand how the model would classify new products.
+3. Within the notebook, three examples of training are provided with functioning tests for each of them. This will allow you to understand how the model would classify new products.
 
 ### Docker Setup and Usage
 
@@ -152,12 +152,12 @@ Make sure you have Docker installed on your system before proceeding.
 
 ### Accessing the Application
 
-Once the containers are up and running, you can access the web application in your browser through the address `http://localhost:5000`. From here, you can interact with the application and test its functionality.
-The results of the model training and evaluation are saved in pickle files, and these files serve as the source for loading predictions within the interface.
+Once the containers are up and running, you can access the web application in your browser at `http://localhost:5000`. From here, you can interact with the application and test its functionality.
+The results of the model training and evaluation are saved in pickle files, which serve as the source for loading predictions within the interface.
 
 **User Interface Guide: Making Predictions on Product Categories**
 
-The user interface of the application allows users to input a product name and description. Upon clicking the "Predict" button, the application will provide predictions for one or multiple categories that the given product might belong to. Additionally, a "Clear Fields" button is available to reset the input fields and perform a new prediction.
+The application's user interface allows users to enter a product name and description. Upon clicking the "Predict" button, the application will provide predictions for one or multiple categories that the given product might belong to. Additionally, a "Clear Fields" button is available to reset the input fields and perform a new prediction.
 
 Here's how to use the interface:
 
@@ -181,13 +181,13 @@ Here's how to use the interface:
 3. Review the predicted categories.
 4. Click the "Clear Fields" button to reset and enter new information for another prediction.
 
-This user-friendly interface allows you to quickly input product information, obtain predictions, and explore multiple potential categories that your product could fall into. It also enables you to reset the interface for new predictions without the need to reload the page or restart the application.
+This user-friendly interface allows you to quickly input product information, obtain predictions, and explore multiple potential categories that your product could fall into. It also enables you to reset the interface for new predictions without reloading the page or restarting the application.
 
 ## Model
 
 **Multiple Training Models in the Project**
 
-In the course of this project, various training models were developed to achieve the goal of multi-label classification. These models were designed to predict product categories based on their attributes. Here's an overview of the different models and their methodologies:
+In the course of this project, various training models were developed to achieve multi-label classification. These models were designed to predict product categories based on their attributes. Here's an overview of the different models and their methodologies:
 
 1. **Logistic Regression with TF-IDF Vectorization**:
    - This model employs Logistic Regression, a powerful classification algorithm, in combination with TF-IDF vectorization to predict multiple categories for a given product.
@@ -203,13 +203,13 @@ In the course of this project, various training models were developed to achieve
    - The model is trained to predict product categories based on their descriptions.
    - Predictions on the test set are used to calculate metrics such as accuracy, precision, recall, and F1-score.
 
-All three models can be found within the "model" folder of the project directory. Each model represents a different approach to solving the multi-label classification problem, leveraging distinct techniques for text processing, feature extraction, and classification. The various models were developed to provide a comprehensive analysis of different strategies and their performance in predicting product categories accurately.
+All three models can be found within the "model" folder of the project directory. Each model represents a different approach to solving the multi-label classification problem, leveraging distinct techniques for text processing, feature extraction, and classification. The various models were developed to provide a comprehensive analysis of different strategies and their performance in accurately predicting product categories.
 
 These trained models offer a range of options for making predictions, catering to different data characteristics and use cases. Users of the application can choose the model that best aligns with their needs and experiment with various prediction methodologies.
 
 **Model Selection: TF-IDF with Logistic Regression**
 
-After thorough evaluation of the multiple training models, the one based on TF-IDF with Logistic Regression was chosen due to its superior performance and results. This model demonstrated its efficacy in predicting product categories accurately and efficiently. Here are the reasons for selecting this particular model:
+After a thorough evaluation of multiple training models, the TF-IDF-based model with Logistic Regression was chosen for its superior performance. This model demonstrated its efficacy in accurately and efficiently predicting product categories. Here are the reasons for selecting this particular model:
 
 1. **High Accuracy and Precision**:
    - The TF-IDF model with Logistic Regression achieved high accuracy and precision in predicting product categories based on their attributes.
